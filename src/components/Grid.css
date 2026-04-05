@@ -1,7 +1,11 @@
 .grid-container {
   display: flex;
   justify-content: center;
-  padding: 1rem;
+  align-items: center;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0.5rem;
 }
 
 .grid {
@@ -10,7 +14,7 @@
   border: 2px solid;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
 }
 
 .rebel-theme .grid {
@@ -21,4 +25,24 @@
 .imperial-theme .grid {
   border-color: #334155;
   background-color: #1e293b;
+}
+
+/* Custom scrollbar for grid container */
+.grid-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.grid-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.rebel-theme .grid-container::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 5px;
+}
+
+.imperial-theme .grid-container::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 5px;
 }

@@ -57,28 +57,6 @@ function Game({ theme, onGameComplete }) {
 
   return (
     <div className="game-container">
-      <div className="game-info">
-        <div className="game-description">
-          {theme === 'rebel' ? (
-            <>
-              <Search size={20} />
-              <span>Hunt Imperial Probe Droids on Hoth</span>
-            </>
-          ) : (
-            <>
-              <Crosshair size={20} />
-              <span>Locate Rebel Bases in Deep Space</span>
-            </>
-          )}
-        </div>
-      </div>
-
-      <DifficultySelector
-        currentDifficulty={difficulty}
-        onSelect={handleDifficultyChange}
-        disabled={gameStatus === GAME_STATUS.PLAYING}
-      />
-
       <Header
         threatsRemaining={threatsRemaining}
         seconds={seconds}
@@ -86,29 +64,57 @@ function Game({ theme, onGameComplete }) {
         gameStatus={gameStatus}
       />
 
-      <Grid
-        grid={grid}
-        theme={theme}
-        onCellClick={handleCellClick}
-        onCellRightClick={handleCellRightClick}
-      />
+      <div className="game-play-area">
+        <div className="game-side-panel">
+          <div className="game-info">
+            <div className="game-description">
+              {theme === 'rebel' ? (
+                <>
+                  <Search size={16} />
+                  <span>Hunt Probe Droids</span>
+                </>
+              ) : (
+                <>
+                  <Crosshair size={16} />
+                  <span>Find Rebel Bases</span>
+                </>
+              )}
+            </div>
+          </div>
 
-      {gameStatus === GAME_STATUS.WON && (
-        <div className="game-message win-message">
-          <Trophy size={32} />
-          <h2>Victory!</h2>
-          <p>{theme === 'rebel' ? 'All probe droids located!' : 'All rebel bases destroyed!'}</p>
-          <p className="game-time">Time: {Math.floor(seconds / 60)}:{(seconds % 60).toString().padStart(2, '0')}</p>
-        </div>
-      )}
+          <DifficultySelector
+            currentDifficulty={difficulty}
+            onSelect={handleDifficultyChange}
+            disabled={gameStatus === GAME_STATUS.PLAYING}
+          />
 
-      {gameStatus === GAME_STATUS.LOST && (
-        <div className="game-message loss-message">
-          <AlertCircle size={32} />
-          <h2>Mission Failed!</h2>
-          <p>{theme === 'rebel' ? 'A probe droid detected you!' : 'Rebel forces destroyed your scanner!'}</p>
+          {(gameStatus === GAME_STATUS.WON || gameStatus === GAME_STATUS.LOST) && (
+            <div className={`game-message ${gameStatus === GAME_STATUS.WON ? 'win-message' : 'loss-message'}`}>
+              {gameStatus === GAME_STATUS.WON ? (
+                <>
+                  <Trophy size={28} />
+                  <h3>Victory!</h3>
+                  <p>{theme === 'rebel' ? 'All probe droids located!' : 'All bases destroyed!'}</p>
+                  <p className="game-time">{Math.floor(seconds / 60)}:{(seconds % 60).toString().padStart(2, '0')}</p>
+                </>
+              ) : (
+                <>
+                  <AlertCircle size={28} />
+                  <h3>Failed!</h3>
+                  <p>{theme === 'rebel' ? 'Probe droid detected you!' : 'Rebels destroyed scanner!'}</p>
+                </>
+              )}
+            </div>
+          )}
         </div>
-      )}
+
+        <Grid
+          grid={grid}
+          theme={theme}
+          onCellClick={handleCellClick}
+          onCellRightClick={handleCellRightClick}
+        />
+      </div>
     </div>
   )
 }

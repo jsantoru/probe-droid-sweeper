@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { Sun, Moon } from 'lucide-react'
 import './App.css'
 import Game from './components/Game'
 import Sidebar from './components/Sidebar'
+import RebelSymbol from './icons/RebelSymbol'
+import ImperialSymbol from './icons/ImperialSymbol'
 import { useGamePreferences, useGameStats } from './hooks/useLocalStorage'
 
 function App() {
@@ -58,17 +59,24 @@ function App() {
 
       <div className="main-content">
         <header className="app-header">
-          <h1>Probe Droid Sweeper</h1>
+          <h1>
+            {theme === 'rebel' ? (
+              <RebelSymbol size={28} className="header-logo" />
+            ) : (
+              <ImperialSymbol size={28} className="header-logo" />
+            )}
+            Probe Droid Sweeper
+          </h1>
           <button className="theme-toggle" onClick={toggleTheme}>
             {theme === 'rebel' ? (
               <>
-                <Sun size={18} />
-                <span>Rebel Alliance</span>
+                <ImperialSymbol size={20} className="theme-toggle-icon" />
+                <span>Switch to Empire</span>
               </>
             ) : (
               <>
-                <Moon size={18} />
-                <span>Galactic Empire</span>
+                <RebelSymbol size={20} className="theme-toggle-icon" />
+                <span>Switch to Rebels</span>
               </>
             )}
           </button>
