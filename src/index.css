@@ -1,0 +1,41 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Rebel Theme Variables */
+  --rebel-bg: #e8f1f5;
+  --rebel-primary: #ff6b35;
+  --rebel-secondary: #004e89;
+  --rebel-text: #1a1a2e;
+  --rebel-cell-bg: #ffffff;
+  --rebel-cell-border: #c0d6df;
+  --rebel-ice-accent: #7fb3d5;
+
+  /* Imperial Theme Variables */
+  --imperial-bg: #1a1a1a;
+  --imperial-primary: #cc0000;
+  --imperial-secondary: #4a4a4a;
+  --imperial-text: #e0e0e0;
+  --imperial-cell-bg: #2a2a2a;
+  --imperial-cell-border: #404040;
+  --imperial-accent: #666666;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}

@@ -1,0 +1,30 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.game-info {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.game-board {
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rebel-theme .game-board {
+  background-color: var(--rebel-cell-bg);
+  border: 2px solid var(--rebel-cell-border);
+}
+
+.imperial-theme .game-board {
+  background-color: var(--imperial-cell-bg);
+  border: 2px solid var(--imperial-cell-border);
+}
