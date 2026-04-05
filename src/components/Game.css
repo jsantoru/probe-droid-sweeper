@@ -2,29 +2,72 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
 }
 
 .game-info {
   text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.game-description {
   font-size: 1.2rem;
   font-weight: 500;
+  margin: 0;
 }
 
-.game-board {
-  padding: 2rem;
+.game-message {
+  margin-top: 1rem;
+  padding: 1.5rem 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 2px solid;
+  animation: slideIn 0.3s ease-out;
 }
 
-.rebel-theme .game-board {
-  background-color: var(--rebel-cell-bg);
-  border: 2px solid var(--rebel-cell-border);
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.imperial-theme .game-board {
-  background-color: var(--imperial-cell-bg);
-  border: 2px solid var(--imperial-cell-border);
+.game-message h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+}
+
+.game-message p {
+  margin: 0.25rem 0;
+  font-size: 1.1rem;
+}
+
+.rebel-theme .win-message {
+  background-color: rgba(255, 107, 53, 0.1);
+  border-color: var(--rebel-primary);
+  color: var(--rebel-secondary);
+}
+
+.rebel-theme .loss-message {
+  background-color: rgba(204, 0, 0, 0.1);
+  border-color: #cc0000;
+  color: var(--rebel-text);
+}
+
+.imperial-theme .win-message {
+  background-color: rgba(204, 0, 0, 0.15);
+  border-color: var(--imperial-primary);
+  color: var(--imperial-text);
+}
+
+.imperial-theme .loss-message {
+  background-color: rgba(255, 107, 53, 0.1);
+  border-color: #ff6b35;
+  color: var(--imperial-text);
 }

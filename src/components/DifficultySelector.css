@@ -1,0 +1,81 @@
+.difficulty-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.difficulty-label {
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.difficulty-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.difficulty-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  min-width: 100px;
+}
+
+.difficulty-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.difficulty-info {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: 0.25rem;
+  font-weight: normal;
+}
+
+/* Rebel theme */
+.rebel-theme .difficulty-btn {
+  color: var(--rebel-text);
+  border-color: var(--rebel-cell-border);
+}
+
+.rebel-theme .difficulty-btn:hover:not(:disabled) {
+  border-color: var(--rebel-primary);
+  background-color: var(--rebel-primary);
+  color: white;
+}
+
+.rebel-theme .difficulty-btn.active {
+  background-color: var(--rebel-secondary);
+  border-color: var(--rebel-secondary);
+  color: white;
+}
+
+/* Imperial theme */
+.imperial-theme .difficulty-btn {
+  color: var(--imperial-text);
+  border-color: var(--imperial-cell-border);
+}
+
+.imperial-theme .difficulty-btn:hover:not(:disabled) {
+  border-color: var(--imperial-primary);
+  background-color: var(--imperial-primary);
+  color: white;
+}
+
+.imperial-theme .difficulty-btn.active {
+  background-color: var(--imperial-accent);
+  border-color: var(--imperial-accent);
+  color: white;
+}

@@ -1,0 +1,22 @@
+.grid-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 0;
+  border: 3px solid;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rebel-theme .grid {
+  border-color: var(--rebel-secondary);
+  background-color: var(--rebel-cell-bg);
+}
+
+.imperial-theme .grid {
+  border-color: var(--imperial-primary);
+  background-color: var(--imperial-cell-bg);
+}
