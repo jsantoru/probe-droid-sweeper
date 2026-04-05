@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Game from './components/Game'
 import Sidebar from './components/Sidebar'
+import DifficultySelector from './components/DifficultySelector'
 import RebelSymbol from './icons/RebelSymbol'
 import ImperialSymbol from './icons/ImperialSymbol'
 import { useGamePreferences, useGameStats } from './hooks/useLocalStorage'
@@ -17,6 +18,8 @@ function App() {
       return []
     }
   })
+  const [difficulty, setDifficulty] = useState('medium')
+  const [isGameActive, setIsGameActive] = useState(false)
 
   const theme = preferences.theme || 'rebel'
 
@@ -59,30 +62,48 @@ function App() {
 
       <div className="main-content">
         <header className="app-header">
-          <h1>
-            {theme === 'rebel' ? (
-              <RebelSymbol size={28} className="header-logo" />
-            ) : (
-              <ImperialSymbol size={28} className="header-logo" />
-            )}
-            Probe Droid Sweeper
-          </h1>
-          <button className="theme-toggle" onClick={toggleTheme}>
-            {theme === 'rebel' ? (
-              <>
-                <ImperialSymbol size={20} className="theme-toggle-icon" />
-                <span>Switch to Empire</span>
-              </>
-            ) : (
-              <>
-                <RebelSymbol size={20} className="theme-toggle-icon" />
-                <span>Switch to Rebels</span>
-              </>
-            )}
-          </button>
+          <div className="header-left">
+            <h1>
+              {theme === 'rebel' ? (
+                <RebelSymbol size={28} className="header-logo" />
+              ) : (
+                <ImperialSymbol size={28} className="header-logo" />
+              )}
+              Probe Droid Sweeper
+            </h1>
+          </div>
+
+          <div className="header-center">
+            <DifficultySelector
+              currentDifficulty={difficulty}
+              onSelect={setDifficulty}
+              disabled={isGameActive}
+            />
+          </div>
+
+          <div className="header-right">
+            <button className="theme-toggle" onClick={toggleTheme}>
+              {theme === 'rebel' ? (
+                <>
+                  <ImperialSymbol size={20} className="theme-toggle-icon" />
+                  <span>Switch to Empire</span>
+                </>
+              ) : (
+                <>
+                  <RebelSymbol size={20} className="theme-toggle-icon" />
+                  <span>Switch to Rebels</span>
+                </>
+              )}
+            </button>
+          </div>
         </header>
 
-        <Game theme={theme} onGameComplete={handleGameComplete} />
+        <Game
+          theme={theme}
+          difficulty={difficulty}
+          onGameComplete={handleGameComplete}
+          onGameStatusChange={setIsGameActive}
+        />
       </div>
     </div>
   )

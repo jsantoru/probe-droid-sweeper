@@ -1,15 +1,13 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Trophy, AlertCircle } from 'lucide-react'
 import { GAME_STATUS } from '../utils/constants'
 import { useGameState } from '../hooks/useGameState'
 import { useTimer } from '../hooks/useTimer'
 import Grid from './Grid'
 import Header from './Header'
-import DifficultySelector from './DifficultySelector'
 import './Game.css'
 
-function Game({ theme, onGameComplete }) {
-  const [difficulty, setDifficulty] = useState('medium')
+function Game({ theme, difficulty, onGameComplete, onGameStatusChange }) {
   const {
     grid,
     gameStatus,
@@ -28,17 +26,19 @@ function Game({ theme, onGameComplete }) {
     gameCompletedRef.current = false
   }
 
-  const handleDifficultyChange = (newDifficulty) => {
-    setDifficulty(newDifficulty)
-    initGame(newDifficulty)
+  useEffect(() => {
+    // Initialize game on mount or difficulty change
+    initGame(difficulty)
     resetTimer()
     gameCompletedRef.current = false
-  }
+  }, [difficulty, initGame])
 
   useEffect(() => {
-    // Initialize game on mount
-    initGame(difficulty)
-  }, [])
+    // Notify parent of game status
+    if (onGameStatusChange) {
+      onGameStatusChange(gameStatus === GAME_STATUS.PLAYING)
+    }
+  }, [gameStatus, onGameStatusChange])
 
   useEffect(() => {
     // Handle game completion
@@ -57,14 +57,6 @@ function Game({ theme, onGameComplete }) {
 
   return (
     <div className="game-container">
-      <div className="top-controls">
-        <DifficultySelector
-          currentDifficulty={difficulty}
-          onSelect={handleDifficultyChange}
-          disabled={gameStatus === GAME_STATUS.PLAYING}
-        />
-      </div>
-
       <div className="game-play-area">
         <div className="game-board">
           <Header
