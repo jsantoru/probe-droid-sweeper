@@ -23,8 +23,8 @@
 }
 
 .imperial-theme .grid {
-  border-color: #334155;
-  background-color: #1e293b;
+  border-color: #404040;
+  background-color: #1a1a1a;
 }
 
 /* Custom scrollbar for grid container */
@@ -43,6 +43,6 @@
 }
 
 .imperial-theme .grid-container::-webkit-scrollbar-thumb {
-  background: #475569;
+  background: #404040;
   border-radius: 5px;
 }

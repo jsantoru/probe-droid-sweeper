@@ -49,18 +49,18 @@
 
 /* Imperial theme */
 .imperial-cell.unrevealed {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: #1a1a1a;
+  border-color: #404040;
 }
 
 .imperial-cell.unrevealed:hover {
-  background-color: #334155;
-  border-color: #475569;
+  background-color: #2a2a2a;
+  border-color: #555555;
 }
 
 .imperial-cell.revealed {
-  background-color: #0f172a;
-  border-color: #1e293b;
+  background-color: #0a0a0a;
+  border-color: #1a1a1a;
 }
 
 .cell-number {

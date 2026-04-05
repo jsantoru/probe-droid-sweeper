@@ -19,8 +19,8 @@
 }
 
 .imperial-sidebar {
-  background-color: #111827;
-  border-color: #1f2937;
+  background-color: #0a0a0a;
+  border-color: #1a1a1a;
   color: var(--imperial-text);
 }
 
@@ -37,7 +37,7 @@
 }
 
 .imperial-sidebar .sidebar-header {
-  border-color: #1f2937;
+  border-color: #1a1a1a;
 }
 
 .sidebar-header h2 {
@@ -67,8 +67,8 @@
 }
 
 .imperial-sidebar .stat-card {
-  background-color: #1f2937;
-  border-color: #374151;
+  background-color: #1a1a1a;
+  border-color: #404040;
 }
 
 .stat-content {
@@ -118,7 +118,7 @@
 }
 
 .imperial-sidebar .time-item {
-  background-color: #1f2937;
+  background-color: #1a1a1a;
 }
 
 .time-difficulty {
@@ -162,8 +162,8 @@
 }
 
 .imperial-sidebar .game-item {
-  background-color: #1f2937;
-  border-color: #374151;
+  background-color: #1a1a1a;
+  border-color: #404040;
 }
 
 .game-item-header {
@@ -227,6 +227,6 @@
 }
 
 .imperial-sidebar::-webkit-scrollbar-thumb {
-  background: #374151;
+  background: #404040;
   border-radius: 3px;
 }

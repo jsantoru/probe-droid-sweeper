@@ -87,13 +87,13 @@
 }
 
 .imperial-theme .win-message {
-  background-color: rgba(30, 41, 59, 0.98);
+  background-color: rgba(26, 26, 26, 0.98);
   border-color: #10b981;
   color: #6ee7b7;
 }
 
 .imperial-theme .loss-message {
-  background-color: rgba(30, 41, 59, 0.98);
+  background-color: rgba(26, 26, 26, 0.98);
   border-color: #ef4444;
   color: #fca5a5;
 }

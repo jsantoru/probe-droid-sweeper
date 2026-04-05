@@ -44,9 +44,9 @@ body {
 
 /* Dark theme scrollbar */
 .imperial-theme ::-webkit-scrollbar-thumb {
-  background: #475569;
+  background: #404040;
 }
 
 .imperial-theme ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #555555;
 }

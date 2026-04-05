@@ -27,8 +27,8 @@
 }
 
 .imperial-theme .difficulty-buttons {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: #1a1a1a;
+  border-color: #404040;
 }
 
 .difficulty-btn {
@@ -83,13 +83,13 @@
 }
 
 .imperial-theme .difficulty-btn:hover:not(:disabled):not(.active) {
-  background-color: #334155;
+  background-color: #2a2a2a;
   color: #e5e7eb;
 }
 
 .imperial-theme .difficulty-btn.active {
   background-color: #f8fafc;
-  color: #0f172a;
+  color: #0a0a0a;
 }
 
 .imperial-theme .difficulty-btn.active .difficulty-info {

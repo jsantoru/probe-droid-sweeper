@@ -31,7 +31,7 @@
 }
 
 .imperial-theme {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
   color: #e5e7eb;
 }
 
@@ -69,8 +69,8 @@
 }
 
 .imperial-theme .app-header {
-  background-color: rgba(15, 23, 42, 0.85);
-  border-color: rgba(30, 41, 59, 0.8);
+  background-color: rgba(10, 10, 10, 0.85);
+  border-color: rgba(40, 40, 40, 0.8);
 }
 
 .header-left {
@@ -141,12 +141,12 @@
 
 .imperial-theme .theme-toggle {
   color: #e5e7eb;
-  border-color: #374151;
+  border-color: #404040;
 }
 
 .imperial-theme .theme-toggle:hover {
-  background-color: #1e293b;
-  border-color: #4b5563;
+  background-color: #1a1a1a;
+  border-color: #555555;
 }
 
 @media (max-width: 768px) {
