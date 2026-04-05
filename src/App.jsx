@@ -6,7 +6,7 @@ import DifficultySelector from './components/DifficultySelector'
 import { useGamePreferences, useGameStats } from './hooks/useLocalStorage'
 
 const REBEL_LOGO = 'https://1000logos.net/wp-content/uploads/2017/08/Rebel-Alliance-Emblem.jpg'
-const IMPERIAL_LOGO = 'https://1000logos.net/wp-content/uploads/2017/08/Galactic-Empire-Emblem.jpg'
+const IMPERIAL_LOGO = 'https://1000logos.net/wp-content/uploads/2021/12/Galactic-Empire-Logo.png'
 
 function App() {
   const [preferences, setPreferences] = useGamePreferences()
