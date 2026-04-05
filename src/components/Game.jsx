@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react'
-import { Trophy, AlertCircle } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Trophy, AlertCircle, X } from 'lucide-react'
 import { GAME_STATUS } from '../utils/constants'
 import { useGameState } from '../hooks/useGameState'
 import { useTimer } from '../hooks/useTimer'
@@ -19,11 +19,13 @@ function Game({ theme, difficulty, onGameComplete, onGameStatusChange }) {
 
   const { seconds, reset: resetTimer } = useTimer(gameStatus === GAME_STATUS.PLAYING)
   const gameCompletedRef = useRef(false)
+  const [showMessage, setShowMessage] = useState(true)
 
   const handleReset = () => {
     initGame(difficulty)
     resetTimer()
     gameCompletedRef.current = false
+    setShowMessage(true)
   }
 
   useEffect(() => {
@@ -31,6 +33,7 @@ function Game({ theme, difficulty, onGameComplete, onGameStatusChange }) {
     initGame(difficulty)
     resetTimer()
     gameCompletedRef.current = false
+    setShowMessage(true)
   }, [difficulty, initGame])
 
   useEffect(() => {
@@ -75,8 +78,11 @@ function Game({ theme, difficulty, onGameComplete, onGameStatusChange }) {
         </div>
       </div>
 
-      {(gameStatus === GAME_STATUS.WON || gameStatus === GAME_STATUS.LOST) && (
+      {(gameStatus === GAME_STATUS.WON || gameStatus === GAME_STATUS.LOST) && showMessage && (
         <div className={`game-message ${gameStatus === GAME_STATUS.WON ? 'win-message' : 'loss-message'}`}>
+          <button className="dismiss-message" onClick={() => setShowMessage(false)} title="Dismiss">
+            <X size={20} />
+          </button>
           {gameStatus === GAME_STATUS.WON ? (
             <>
               <Trophy size={28} />

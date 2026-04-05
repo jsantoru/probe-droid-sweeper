@@ -42,6 +42,31 @@
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+.dismiss-message {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  opacity: 0.6;
+  transition: all 0.15s ease;
+}
+
+.dismiss-message:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.imperial-theme .dismiss-message:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
