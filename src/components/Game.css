@@ -5,27 +5,29 @@
   width: 100%;
   padding: 1rem 1.5rem;
   overflow: hidden;
+  position: relative;
 }
 
-.game-play-area {
+.game-controls {
   display: flex;
-  gap: 2rem;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  flex: 1;
-  min-height: 0;
+  padding: 0 0 1rem 0;
+  gap: 2rem;
 }
 
-.game-side-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  width: 200px;
+.controls-left {
   flex-shrink: 0;
 }
 
-.game-info {
-  text-align: left;
+.controls-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.controls-right {
+  flex-shrink: 0;
 }
 
 .game-description {
@@ -38,38 +40,53 @@
   opacity: 0.6;
 }
 
+.game-play-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+}
+
 .game-message {
-  padding: 1.5rem 1rem;
-  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  border-radius: 12px;
   text-align: center;
   border: 1px solid;
   animation: slideIn 0.3s ease-out;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  min-width: 300px;
+  z-index: 100;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: translate(-50%, -50%) scale(0.9);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
 .game-message h3 {
   margin: 0;
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
 .game-message p {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   opacity: 0.8;
   line-height: 1.4;
 }
@@ -77,31 +94,31 @@
 .game-message .game-time {
   font-family: 'Courier New', monospace;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   opacity: 1;
   margin-top: 0.25rem;
 }
 
 .rebel-theme .win-message {
-  background-color: rgba(16, 185, 129, 0.08);
+  background-color: rgba(249, 250, 251, 0.98);
   border-color: #10b981;
   color: #065f46;
 }
 
 .rebel-theme .loss-message {
-  background-color: rgba(239, 68, 68, 0.08);
+  background-color: rgba(249, 250, 251, 0.98);
   border-color: #ef4444;
   color: #991b1b;
 }
 
 .imperial-theme .win-message {
-  background-color: rgba(16, 185, 129, 0.12);
+  background-color: rgba(30, 41, 59, 0.98);
   border-color: #10b981;
   color: #6ee7b7;
 }
 
 .imperial-theme .loss-message {
-  background-color: rgba(239, 68, 68, 0.12);
+  background-color: rgba(30, 41, 59, 0.98);
   border-color: #ef4444;
   color: #fca5a5;
 }

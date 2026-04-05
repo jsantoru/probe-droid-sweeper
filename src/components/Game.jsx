@@ -57,57 +57,42 @@ function Game({ theme, onGameComplete }) {
 
   return (
     <div className="game-container">
-      <Header
-        threatsRemaining={threatsRemaining}
-        seconds={seconds}
-        onReset={handleReset}
-        gameStatus={gameStatus}
-      />
+      <div className="game-controls">
+        <div className="controls-left">
+          <Header
+            threatsRemaining={threatsRemaining}
+            seconds={seconds}
+            onReset={handleReset}
+            gameStatus={gameStatus}
+          />
+        </div>
 
-      <div className="game-play-area">
-        <div className="game-side-panel">
-          <div className="game-info">
-            <div className="game-description">
-              {theme === 'rebel' ? (
-                <>
-                  <Search size={16} />
-                  <span>Hunt Probe Droids</span>
-                </>
-              ) : (
-                <>
-                  <Crosshair size={16} />
-                  <span>Find Rebel Bases</span>
-                </>
-              )}
-            </div>
+        <div className="controls-center">
+          <div className="game-description">
+            {theme === 'rebel' ? (
+              <>
+                <Search size={16} />
+                <span>Hunt Probe Droids</span>
+              </>
+            ) : (
+              <>
+                <Crosshair size={16} />
+                <span>Find Rebel Bases</span>
+              </>
+            )}
           </div>
+        </div>
 
+        <div className="controls-right">
           <DifficultySelector
             currentDifficulty={difficulty}
             onSelect={handleDifficultyChange}
             disabled={gameStatus === GAME_STATUS.PLAYING}
           />
-
-          {(gameStatus === GAME_STATUS.WON || gameStatus === GAME_STATUS.LOST) && (
-            <div className={`game-message ${gameStatus === GAME_STATUS.WON ? 'win-message' : 'loss-message'}`}>
-              {gameStatus === GAME_STATUS.WON ? (
-                <>
-                  <Trophy size={28} />
-                  <h3>Victory!</h3>
-                  <p>{theme === 'rebel' ? 'All probe droids located!' : 'All bases destroyed!'}</p>
-                  <p className="game-time">{Math.floor(seconds / 60)}:{(seconds % 60).toString().padStart(2, '0')}</p>
-                </>
-              ) : (
-                <>
-                  <AlertCircle size={28} />
-                  <h3>Failed!</h3>
-                  <p>{theme === 'rebel' ? 'Probe droid detected you!' : 'Rebels destroyed scanner!'}</p>
-                </>
-              )}
-            </div>
-          )}
         </div>
+      </div>
 
+      <div className="game-play-area">
         <Grid
           grid={grid}
           theme={theme}
@@ -115,6 +100,25 @@ function Game({ theme, onGameComplete }) {
           onCellRightClick={handleCellRightClick}
         />
       </div>
+
+      {(gameStatus === GAME_STATUS.WON || gameStatus === GAME_STATUS.LOST) && (
+        <div className={`game-message ${gameStatus === GAME_STATUS.WON ? 'win-message' : 'loss-message'}`}>
+          {gameStatus === GAME_STATUS.WON ? (
+            <>
+              <Trophy size={28} />
+              <h3>Victory!</h3>
+              <p>{theme === 'rebel' ? 'All probe droids located!' : 'All bases destroyed!'}</p>
+              <p className="game-time">{Math.floor(seconds / 60)}:{(seconds % 60).toString().padStart(2, '0')}</p>
+            </>
+          ) : (
+            <>
+              <AlertCircle size={28} />
+              <h3>Failed!</h3>
+              <p>{theme === 'rebel' ? 'Probe droid detected you!' : 'Rebels destroyed scanner!'}</p>
+            </>
+          )}
+        </div>
+      )}
     </div>
   )
 }
