@@ -5,7 +5,7 @@ import Sidebar from './components/Sidebar'
 import DifficultySelector from './components/DifficultySelector'
 import { useGamePreferences, useGameStats } from './hooks/useLocalStorage'
 
-const REBEL_LOGO = 'https://logos-world.net/wp-content/uploads/2022/02/Star-Wars-Rebel-Logo.png'
+const REBEL_LOGO = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Rebel_Alliance_logo.svg/960px-Rebel_Alliance_logo.svg.png'
 const IMPERIAL_LOGO = 'https://www.clipartbest.com/cliparts/9i4/oy4/9i4oy4b5T.jpeg'
 
 function App() {
