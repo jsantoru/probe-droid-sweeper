@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Search, Crosshair, Trophy, AlertCircle } from 'lucide-react'
+import { Trophy, AlertCircle } from 'lucide-react'
 import { GAME_STATUS } from '../utils/constants'
 import { useGameState } from '../hooks/useGameState'
 import { useTimer } from '../hooks/useTimer'
@@ -57,48 +57,30 @@ function Game({ theme, onGameComplete }) {
 
   return (
     <div className="game-container">
-      <div className="game-controls">
-        <div className="controls-left">
+      <div className="top-controls">
+        <DifficultySelector
+          currentDifficulty={difficulty}
+          onSelect={handleDifficultyChange}
+          disabled={gameStatus === GAME_STATUS.PLAYING}
+        />
+      </div>
+
+      <div className="game-play-area">
+        <div className="game-board">
           <Header
             threatsRemaining={threatsRemaining}
             seconds={seconds}
             onReset={handleReset}
             gameStatus={gameStatus}
           />
-        </div>
 
-        <div className="controls-center">
-          <div className="game-description">
-            {theme === 'rebel' ? (
-              <>
-                <Search size={16} />
-                <span>Hunt Probe Droids</span>
-              </>
-            ) : (
-              <>
-                <Crosshair size={16} />
-                <span>Find Rebel Bases</span>
-              </>
-            )}
-          </div>
-        </div>
-
-        <div className="controls-right">
-          <DifficultySelector
-            currentDifficulty={difficulty}
-            onSelect={handleDifficultyChange}
-            disabled={gameStatus === GAME_STATUS.PLAYING}
+          <Grid
+            grid={grid}
+            theme={theme}
+            onCellClick={handleCellClick}
+            onCellRightClick={handleCellRightClick}
           />
         </div>
-      </div>
-
-      <div className="game-play-area">
-        <Grid
-          grid={grid}
-          theme={theme}
-          onCellClick={handleCellClick}
-          onCellRightClick={handleCellRightClick}
-        />
       </div>
 
       {(gameStatus === GAME_STATUS.WON || gameStatus === GAME_STATUS.LOST) && (

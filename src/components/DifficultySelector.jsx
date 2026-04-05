@@ -4,7 +4,6 @@ import './DifficultySelector.css'
 function DifficultySelector({ currentDifficulty, onSelect, disabled }) {
   return (
     <div className="difficulty-selector">
-      <span className="difficulty-label">Difficulty:</span>
       <div className="difficulty-buttons">
         {Object.keys(DIFFICULTY).map((key) => (
           <button
