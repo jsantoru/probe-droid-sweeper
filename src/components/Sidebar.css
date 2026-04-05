@@ -147,7 +147,7 @@
 .game-item {
   padding: 0.75rem;
   border-radius: 6px;
-  border-left: 3px solid;
+  border: 1px solid;
   font-size: 0.875rem;
   transition: transform 0.1s ease;
 }
@@ -158,18 +158,12 @@
 
 .rebel-sidebar .game-item {
   background-color: white;
+  border-color: #e5e7eb;
 }
 
 .imperial-sidebar .game-item {
   background-color: #1f2937;
-}
-
-.game-item.won {
-  border-color: #10b981;
-}
-
-.game-item.lost {
-  border-color: #ef4444;
+  border-color: #374151;
 }
 
 .game-item-header {
