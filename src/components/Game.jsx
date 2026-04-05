@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { Search, Crosshair, Trophy, AlertCircle } from 'lucide-react'
 import { GAME_STATUS } from '../utils/constants'
 import { useGameState } from '../hooks/useGameState'
 import { useTimer } from '../hooks/useTimer'
@@ -7,7 +8,7 @@ import Header from './Header'
 import DifficultySelector from './DifficultySelector'
 import './Game.css'
 
-function Game({ theme }) {
+function Game({ theme, onGameComplete }) {
   const [difficulty, setDifficulty] = useState('medium')
   const {
     grid,
@@ -19,16 +20,19 @@ function Game({ theme }) {
   } = useGameState(difficulty)
 
   const { seconds, reset: resetTimer } = useTimer(gameStatus === GAME_STATUS.PLAYING)
+  const gameCompletedRef = useRef(false)
 
   const handleReset = () => {
     initGame(difficulty)
     resetTimer()
+    gameCompletedRef.current = false
   }
 
   const handleDifficultyChange = (newDifficulty) => {
     setDifficulty(newDifficulty)
     initGame(newDifficulty)
     resetTimer()
+    gameCompletedRef.current = false
   }
 
   useEffect(() => {
@@ -36,14 +40,37 @@ function Game({ theme }) {
     initGame(difficulty)
   }, [])
 
+  useEffect(() => {
+    // Handle game completion
+    if ((gameStatus === GAME_STATUS.WON || gameStatus === GAME_STATUS.LOST) && !gameCompletedRef.current) {
+      gameCompletedRef.current = true
+      if (onGameComplete) {
+        onGameComplete({
+          won: gameStatus === GAME_STATUS.WON,
+          difficulty,
+          time: seconds,
+          timestamp: Date.now()
+        })
+      }
+    }
+  }, [gameStatus, difficulty, seconds, onGameComplete])
+
   return (
     <div className="game-container">
       <div className="game-info">
-        <p className="game-description">
-          {theme === 'rebel'
-            ? '🔍 Hunt Imperial Probe Droids on Hoth'
-            : '🎯 Locate Rebel Bases in Deep Space'}
-        </p>
+        <div className="game-description">
+          {theme === 'rebel' ? (
+            <>
+              <Search size={20} />
+              <span>Hunt Imperial Probe Droids on Hoth</span>
+            </>
+          ) : (
+            <>
+              <Crosshair size={20} />
+              <span>Locate Rebel Bases in Deep Space</span>
+            </>
+          )}
+        </div>
       </div>
 
       <DifficultySelector
@@ -68,14 +95,16 @@ function Game({ theme }) {
 
       {gameStatus === GAME_STATUS.WON && (
         <div className="game-message win-message">
+          <Trophy size={32} />
           <h2>Victory!</h2>
           <p>{theme === 'rebel' ? 'All probe droids located!' : 'All rebel bases destroyed!'}</p>
-          <p>Time: {Math.floor(seconds / 60)}:{(seconds % 60).toString().padStart(2, '0')}</p>
+          <p className="game-time">Time: {Math.floor(seconds / 60)}:{(seconds % 60).toString().padStart(2, '0')}</p>
         </div>
       )}
 
       {gameStatus === GAME_STATUS.LOST && (
         <div className="game-message loss-message">
+          <AlertCircle size={32} />
           <h2>Mission Failed!</h2>
           <p>{theme === 'rebel' ? 'A probe droid detected you!' : 'Rebel forces destroyed your scanner!'}</p>
         </div>

@@ -2,80 +2,97 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
 .difficulty-label {
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  opacity: 0.5;
 }
 
 .difficulty-buttons {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  border-radius: 10px;
+  border: 1px solid;
+}
+
+.rebel-theme .difficulty-buttons {
+  background-color: #f9fafb;
+  border-color: #e5e7eb;
+}
+
+.imperial-theme .difficulty-buttons {
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .difficulty-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.75rem 1.5rem;
-  border: 2px solid;
+  padding: 0.625rem 1.25rem;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.2s ease;
+  font-weight: 500;
+  transition: all 0.15s ease;
   background-color: transparent;
-  min-width: 100px;
+  min-width: 90px;
+  font-size: 0.875rem;
 }
 
 .difficulty-btn:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 .difficulty-info {
-  font-size: 0.75rem;
-  opacity: 0.7;
+  font-size: 0.7rem;
+  opacity: 0.6;
   margin-top: 0.25rem;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 /* Rebel theme */
 .rebel-theme .difficulty-btn {
-  color: var(--rebel-text);
-  border-color: var(--rebel-cell-border);
+  color: #6b7280;
 }
 
-.rebel-theme .difficulty-btn:hover:not(:disabled) {
-  border-color: var(--rebel-primary);
-  background-color: var(--rebel-primary);
-  color: white;
+.rebel-theme .difficulty-btn:hover:not(:disabled):not(.active) {
+  background-color: #e5e7eb;
+  color: #1f2937;
 }
 
 .rebel-theme .difficulty-btn.active {
-  background-color: var(--rebel-secondary);
-  border-color: var(--rebel-secondary);
+  background-color: #1f2937;
   color: white;
+}
+
+.rebel-theme .difficulty-btn.active .difficulty-info {
+  opacity: 0.8;
 }
 
 /* Imperial theme */
 .imperial-theme .difficulty-btn {
-  color: var(--imperial-text);
-  border-color: var(--imperial-cell-border);
+  color: #9ca3af;
 }
 
-.imperial-theme .difficulty-btn:hover:not(:disabled) {
-  border-color: var(--imperial-primary);
-  background-color: var(--imperial-primary);
-  color: white;
+.imperial-theme .difficulty-btn:hover:not(:disabled):not(.active) {
+  background-color: #334155;
+  color: #e5e7eb;
 }
 
 .imperial-theme .difficulty-btn.active {
-  background-color: var(--imperial-accent);
-  border-color: var(--imperial-accent);
-  color: white;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.imperial-theme .difficulty-btn.active .difficulty-info {
+  opacity: 0.7;
 }

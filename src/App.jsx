@@ -1,23 +1,81 @@
 import { useState } from 'react'
+import { Sun, Moon } from 'lucide-react'
 import './App.css'
 import Game from './components/Game'
+import Sidebar from './components/Sidebar'
+import { useGamePreferences, useGameStats } from './hooks/useLocalStorage'
 
 function App() {
-  const [theme, setTheme] = useState('rebel')
+  const [preferences, setPreferences] = useGamePreferences()
+  const [stats, setStats] = useGameStats()
+  const [gameHistory, setGameHistory] = useState(() => {
+    try {
+      const saved = localStorage.getItem('pds_game_history')
+      return saved ? JSON.parse(saved) : []
+    } catch {
+      return []
+    }
+  })
+
+  const theme = preferences.theme || 'rebel'
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'rebel' ? 'imperial' : 'rebel')
+    const newTheme = theme === 'rebel' ? 'imperial' : 'rebel'
+    setPreferences({ ...preferences, theme: newTheme })
+  }
+
+  const handleGameComplete = (gameResult) => {
+    // Update stats
+    const newStats = {
+      ...stats,
+      gamesPlayed: stats.gamesPlayed + 1,
+      gamesWon: gameResult.won ? stats.gamesWon + 1 : stats.gamesWon,
+      currentStreak: gameResult.won ? stats.currentStreak + 1 : 0,
+      bestStreak: gameResult.won
+        ? Math.max(stats.bestStreak, stats.currentStreak + 1)
+        : stats.bestStreak
+    }
+
+    // Update best time if won
+    if (gameResult.won) {
+      const currentBest = newStats.bestTimes[gameResult.difficulty]
+      if (!currentBest || gameResult.time < currentBest) {
+        newStats.bestTimes[gameResult.difficulty] = gameResult.time
+      }
+    }
+
+    setStats(newStats)
+
+    // Add to game history
+    const newHistory = [gameResult, ...gameHistory]
+    setGameHistory(newHistory)
+    localStorage.setItem('pds_game_history', JSON.stringify(newHistory))
   }
 
   return (
     <div className={`app ${theme}-theme`}>
-      <header className="app-header">
-        <h1>Probe Droid Sweeper</h1>
-        <button className="theme-toggle" onClick={toggleTheme}>
-          {theme === 'rebel' ? '⚪ Rebel Alliance' : '⚫ Galactic Empire'}
-        </button>
-      </header>
-      <Game theme={theme} />
+      <Sidebar gameHistory={gameHistory} stats={stats} theme={theme} />
+
+      <div className="main-content">
+        <header className="app-header">
+          <h1>Probe Droid Sweeper</h1>
+          <button className="theme-toggle" onClick={toggleTheme}>
+            {theme === 'rebel' ? (
+              <>
+                <Sun size={18} />
+                <span>Rebel Alliance</span>
+              </>
+            ) : (
+              <>
+                <Moon size={18} />
+                <span>Galactic Empire</span>
+              </>
+            )}
+          </button>
+        </header>
+
+        <Game theme={theme} onGameComplete={handleGameComplete} />
+      </div>
     </div>
   )
 }

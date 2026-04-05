@@ -1,72 +1,92 @@
 .app {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .rebel-theme {
-  background-color: var(--rebel-bg);
-  color: var(--rebel-text);
+  background-color: #ffffff;
+  color: #1f2937;
 }
 
 .imperial-theme {
-  background-color: var(--imperial-bg);
-  color: var(--imperial-text);
+  background-color: #0f172a;
+  color: #e5e7eb;
+}
+
+.main-content {
+  margin-left: 280px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .app-header {
-  text-align: center;
-  margin-bottom: 2rem;
-  width: 100%;
-  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+}
+
+.rebel-theme .app-header {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: #e5e7eb;
+}
+
+.imperial-theme .app-header {
+  background-color: rgba(15, 23, 42, 0.8);
+  border-color: #1e293b;
 }
 
 .app-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-.rebel-theme .app-header h1 {
-  color: var(--rebel-secondary);
-}
-
-.imperial-theme .app-header h1 {
-  color: var(--imperial-text);
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.5px;
 }
 
 .theme-toggle {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border: 2px solid;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border: 1px solid;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background-color: transparent;
 }
 
 .rebel-theme .theme-toggle {
-  background-color: var(--rebel-primary);
-  color: white;
-  border-color: var(--rebel-secondary);
+  color: #1f2937;
+  border-color: #d1d5db;
 }
 
 .rebel-theme .theme-toggle:hover {
-  background-color: var(--rebel-secondary);
-  border-color: var(--rebel-primary);
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
 }
 
 .imperial-theme .theme-toggle {
-  background-color: var(--imperial-primary);
-  color: white;
-  border-color: var(--imperial-accent);
+  color: #e5e7eb;
+  border-color: #374151;
 }
 
 .imperial-theme .theme-toggle:hover {
-  background-color: var(--imperial-accent);
-  border-color: var(--imperial-primary);
+  background-color: #1e293b;
+  border-color: #4b5563;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
 }

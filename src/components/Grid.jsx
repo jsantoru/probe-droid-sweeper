@@ -7,8 +7,8 @@ function Grid({ grid, theme, onCellClick, onCellRightClick }) {
       <div
         className="grid"
         style={{
-          gridTemplateColumns: `repeat(${grid[0]?.length || 0}, 30px)`,
-          gridTemplateRows: `repeat(${grid.length}, 30px)`
+          gridTemplateColumns: `repeat(${grid[0]?.length || 0}, 32px)`,
+          gridTemplateRows: `repeat(${grid.length}, 32px)`
         }}
       >
         {grid.map((row, rowIndex) =>

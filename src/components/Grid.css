@@ -7,16 +7,18 @@
 .grid {
   display: grid;
   gap: 0;
-  border: 3px solid;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .rebel-theme .grid {
-  border-color: var(--rebel-secondary);
-  background-color: var(--rebel-cell-bg);
+  border-color: #d1d5db;
+  background-color: #ffffff;
 }
 
 .imperial-theme .grid {
-  border-color: var(--imperial-primary);
-  background-color: var(--imperial-cell-bg);
+  border-color: #334155;
+  background-color: #1e293b;
 }

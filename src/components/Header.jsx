@@ -1,4 +1,4 @@
-import { RotateCcw } from 'lucide-react'
+import { RotateCcw, Play, Trophy, X } from 'lucide-react'
 import './Header.css'
 
 function Header({ threatsRemaining, seconds, onReset, gameStatus }) {
@@ -8,14 +8,14 @@ function Header({ threatsRemaining, seconds, onReset, gameStatus }) {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
   }
 
-  const getStatusEmoji = () => {
+  const getStatusIcon = () => {
     switch (gameStatus) {
       case 'won':
-        return '🎉'
+        return <Trophy size={18} className="status-icon won" />
       case 'lost':
-        return '💥'
+        return <X size={18} className="status-icon lost" />
       default:
-        return '🎮'
+        return <Play size={18} className="status-icon playing" />
     }
   }
 
@@ -27,8 +27,8 @@ function Header({ threatsRemaining, seconds, onReset, gameStatus }) {
       </div>
 
       <button className="reset-button" onClick={onReset} title="New Game">
-        <span className="status-emoji">{getStatusEmoji()}</span>
-        <RotateCcw size={20} />
+        {getStatusIcon()}
+        <RotateCcw size={18} />
       </button>
 
       <div className="game-stat">

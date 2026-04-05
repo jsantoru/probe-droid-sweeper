@@ -1,0 +1,238 @@
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid;
+  overflow-y: auto;
+  padding: 1.5rem;
+  gap: 1.5rem;
+}
+
+.rebel-sidebar {
+  background-color: #f9fafb;
+  border-color: #e5e7eb;
+  color: var(--rebel-text);
+}
+
+.imperial-sidebar {
+  background-color: #111827;
+  border-color: #1f2937;
+  color: var(--imperial-text);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid;
+}
+
+.rebel-sidebar .sidebar-header {
+  border-color: #e5e7eb;
+}
+
+.imperial-sidebar .sidebar-header {
+  border-color: #1f2937;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.sidebar-stats {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.stat-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid;
+}
+
+.rebel-sidebar .stat-card {
+  background-color: white;
+  border-color: #e5e7eb;
+}
+
+.imperial-sidebar .stat-card {
+  background-color: #1f2937;
+  border-color: #374151;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.best-times h3,
+.recent-games h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.7;
+}
+
+.time-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.time-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.rebel-sidebar .time-item {
+  background-color: white;
+}
+
+.imperial-sidebar .time-item {
+  background-color: #1f2937;
+}
+
+.time-difficulty {
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.time-value {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+}
+
+.games-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 2rem 1rem;
+  opacity: 0.5;
+  font-size: 0.875rem;
+}
+
+.game-item {
+  padding: 0.75rem;
+  border-radius: 6px;
+  border-left: 3px solid;
+  font-size: 0.875rem;
+  transition: transform 0.1s ease;
+}
+
+.game-item:hover {
+  transform: translateX(4px);
+}
+
+.rebel-sidebar .game-item {
+  background-color: white;
+}
+
+.imperial-sidebar .game-item {
+  background-color: #1f2937;
+}
+
+.game-item.won {
+  border-color: #10b981;
+}
+
+.game-item.lost {
+  border-color: #ef4444;
+}
+
+.game-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.game-result {
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.game-result.win {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.game-result.loss {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.game-difficulty {
+  text-transform: capitalize;
+  opacity: 0.6;
+  font-size: 0.75rem;
+}
+
+.game-item-details {
+  display: flex;
+  gap: 1rem;
+  opacity: 0.7;
+  font-size: 0.75rem;
+}
+
+.game-time,
+.game-date {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Scrollbar styling */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.rebel-sidebar::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.imperial-sidebar::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 3px;
+}

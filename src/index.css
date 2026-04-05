@@ -4,24 +4,6 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* Rebel Theme Variables */
-  --rebel-bg: #e8f1f5;
-  --rebel-primary: #ff6b35;
-  --rebel-secondary: #004e89;
-  --rebel-text: #1a1a2e;
-  --rebel-cell-bg: #ffffff;
-  --rebel-cell-border: #c0d6df;
-  --rebel-ice-accent: #7fb3d5;
-
-  /* Imperial Theme Variables */
-  --imperial-bg: #1a1a1a;
-  --imperial-primary: #cc0000;
-  --imperial-secondary: #4a4a4a;
-  --imperial-text: #e0e0e0;
-  --imperial-cell-bg: #2a2a2a;
-  --imperial-cell-border: #404040;
-  --imperial-accent: #666666;
 }
 
 * {
@@ -34,8 +16,37 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  line-height: 1.5;
 }
 
 #root {
   min-height: 100vh;
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Dark theme scrollbar */
+.imperial-theme ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.imperial-theme ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
 }
