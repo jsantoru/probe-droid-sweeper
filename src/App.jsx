@@ -3,9 +3,10 @@ import './App.css'
 import Game from './components/Game'
 import Sidebar from './components/Sidebar'
 import DifficultySelector from './components/DifficultySelector'
-import RebelSymbol from './icons/RebelSymbol'
-import ImperialSymbol from './icons/ImperialSymbol'
 import { useGamePreferences, useGameStats } from './hooks/useLocalStorage'
+
+const REBEL_LOGO = 'https://1000logos.net/wp-content/uploads/2017/08/Rebel-Alliance-Emblem.jpg'
+const IMPERIAL_LOGO = 'https://1000logos.net/wp-content/uploads/2017/08/Galactic-Empire-Emblem.jpg'
 
 function App() {
   const [preferences, setPreferences] = useGamePreferences()
@@ -64,11 +65,11 @@ function App() {
         <header className="app-header">
           <div className="header-left">
             <h1>
-              {theme === 'rebel' ? (
-                <RebelSymbol size={28} className="header-logo" />
-              ) : (
-                <ImperialSymbol size={28} className="header-logo" />
-              )}
+              <img
+                src={theme === 'rebel' ? REBEL_LOGO : IMPERIAL_LOGO}
+                alt={theme === 'rebel' ? 'Rebel Alliance' : 'Galactic Empire'}
+                className="header-logo"
+              />
               Probe Droid Sweeper
             </h1>
           </div>
@@ -83,17 +84,12 @@ function App() {
 
           <div className="header-right">
             <button className="theme-toggle" onClick={toggleTheme}>
-              {theme === 'rebel' ? (
-                <>
-                  <ImperialSymbol size={20} className="theme-toggle-icon" />
-                  <span>Switch to Empire</span>
-                </>
-              ) : (
-                <>
-                  <RebelSymbol size={20} className="theme-toggle-icon" />
-                  <span>Switch to Rebels</span>
-                </>
-              )}
+              <img
+                src={theme === 'rebel' ? REBEL_LOGO : IMPERIAL_LOGO}
+                alt={theme === 'rebel' ? 'Rebel Alliance' : 'Galactic Empire'}
+                className="theme-toggle-icon"
+              />
+              <span>{theme === 'rebel' ? 'Rebel Alliance' : 'Galactic Empire'}</span>
             </button>
           </div>
         </header>
