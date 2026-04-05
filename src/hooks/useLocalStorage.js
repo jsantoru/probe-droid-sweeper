@@ -1,25 +1,91 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
-export function useLocalStorage(key, initialValue) {
-  // Get initial value from localStorage or use provided initialValue
+const USERS_KEY = 'pds_users'
+const CURRENT_USER_KEY = 'pds_current_user'
+
+// User management utilities
+export function getAllUsers() {
+  try {
+    const users = localStorage.getItem(USERS_KEY)
+    return users ? JSON.parse(users) : {}
+  } catch (error) {
+    console.error('Error loading users:', error)
+    return {}
+  }
+}
+
+export function getUsernames() {
+  return Object.keys(getAllUsers())
+}
+
+export function getCurrentUsername() {
+  return localStorage.getItem(CURRENT_USER_KEY)
+}
+
+export function setCurrentUsername(username) {
+  localStorage.setItem(CURRENT_USER_KEY, username)
+
+  // Initialize user data if doesn't exist
+  const users = getAllUsers()
+  if (!users[username]) {
+    users[username] = {
+      preferences: {
+        theme: 'rebel',
+        lastDifficulty: 'medium'
+      },
+      stats: {
+        gamesPlayed: 0,
+        gamesWon: 0,
+        currentStreak: 0,
+        bestStreak: 0,
+        bestTimes: {
+          easy: null,
+          medium: null,
+          hard: null
+        }
+      },
+      history: []
+    }
+    localStorage.setItem(USERS_KEY, JSON.stringify(users))
+  }
+}
+
+export function clearCurrentUser() {
+  localStorage.removeItem(CURRENT_USER_KEY)
+}
+
+// Generic hook for user-specific data
+function useUserData(dataKey, initialValue) {
+  const username = getCurrentUsername()
+
   const [storedValue, setStoredValue] = useState(() => {
+    if (!username) return initialValue
+
     try {
-      const item = window.localStorage.getItem(key)
-      return item ? JSON.parse(item) : initialValue
+      const users = getAllUsers()
+      const userData = users[username]
+      return userData && userData[dataKey] !== undefined ? userData[dataKey] : initialValue
     } catch (error) {
-      console.error(`Error loading ${key} from localStorage:`, error)
+      console.error(`Error loading ${dataKey} for user ${username}:`, error)
       return initialValue
     }
   })
 
-  // Update localStorage when value changes
   const setValue = (value) => {
+    if (!username) return
+
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value
       setStoredValue(valueToStore)
-      window.localStorage.setItem(key, JSON.stringify(valueToStore))
+
+      const users = getAllUsers()
+      if (!users[username]) {
+        users[username] = {}
+      }
+      users[username][dataKey] = valueToStore
+      localStorage.setItem(USERS_KEY, JSON.stringify(users))
     } catch (error) {
-      console.error(`Error saving ${key} to localStorage:`, error)
+      console.error(`Error saving ${dataKey} for user ${username}:`, error)
     }
   }
 
@@ -28,14 +94,14 @@ export function useLocalStorage(key, initialValue) {
 
 // Specific hooks for game data
 export function useGamePreferences() {
-  return useLocalStorage('pds_preferences', {
+  return useUserData('preferences', {
     theme: 'rebel',
     lastDifficulty: 'medium'
   })
 }
 
 export function useGameStats() {
-  return useLocalStorage('pds_stats', {
+  return useUserData('stats', {
     gamesPlayed: 0,
     gamesWon: 0,
     currentStreak: 0,
@@ -48,6 +114,6 @@ export function useGameStats() {
   })
 }
 
-export function useCurrentGame() {
-  return useLocalStorage('pds_current_game', null)
+export function useGameHistory() {
+  return useUserData('history', [])
 }

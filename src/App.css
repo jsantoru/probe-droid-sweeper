@@ -60,7 +60,7 @@
   top: 0;
   z-index: 10;
   backdrop-filter: blur(12px);
-  height: 70px;
+  height: 78px;
 }
 
 .rebel-theme .app-header {
@@ -106,6 +106,38 @@
   height: 32px;
   object-fit: cover;
   border-radius: 4px;
+}
+
+.user-badge {
+  margin-left: 1rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  border: 1px solid;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background-color: transparent;
+}
+
+.rebel-theme .user-badge {
+  color: #1f2937;
+  border-color: #d1d5db;
+}
+
+.rebel-theme .user-badge:hover {
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.imperial-theme .user-badge {
+  color: #e5e7eb;
+  border-color: #404040;
+}
+
+.imperial-theme .user-badge:hover {
+  background-color: #1a1a1a;
+  border-color: #555555;
 }
 
 .theme-toggle {
